@@ -92,7 +92,7 @@
                                     value="{{ $memberSelected->id_member }}">
 
                                 <div class="form-group row">
-                                    <label for="totalrp" class="col-lg-2 control-label">Total</label>
+                                    <label for="totalrp" class="col-lg-2 control-label">Totals</label>
                                     <div class="col-lg-8">
                                         <input type="text" id="totalrp" class="form-control" readonly>
                                     </div>
@@ -298,12 +298,12 @@
                     });
             });
 
-            $(document).on('input', '#diskon', function() {
+            $('#diskon').on('input', function() {
                 if ($(this).val() == "") {
                     $(this).val(0).select();
                 }
 
-                loadForm($(this).val());
+                loadForm($('#diskon').val(), $('#diterima').val(), $('#dp').val());
             });
 
             $('#diterima').on('input', function() {
@@ -311,7 +311,7 @@
                     $(this).val(0).select();
                 }
 
-                loadForm($('#diskon').val(), $(this).val());
+                loadForm($('#diskon').val(), $('#diterima').val(), $('#dp').val());
             }).focus(function() {
                 $(this).select();
             });
@@ -321,7 +321,7 @@
                     $(this).val(0).select();
                 }
 
-                loadForm($('#diskon').val(), $(this).val());
+                loadForm($('#diskon').val(), $('#diterima').val(), $('#dp').val());
             }).focus(function() {
                 $(this).select();
             });
@@ -458,7 +458,8 @@
                     $('.tampil-terbilang').text(response.terbilang);
 
                     $('#kembali').val('Rp.' + response.kembalirp);
-                    if ($('#diterima').val() != 0 || $('#dp').val() != 0) {
+                    if ($('#diterima').val() != 0) {
+                    // if ($('#diterima').val() != 0 || $('#dp').val() != 0) {
                         $('.tampil-bayar').text('Kembali: Rp. ' + response.kembalirp);
                         $('.tampil-bayar').css('font-size', '5em');
                         $('.tampil-terbilang').text(response.kembali_terbilang);
