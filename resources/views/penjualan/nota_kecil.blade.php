@@ -86,16 +86,29 @@
 
     <table width="100%" style="border: 0;">
         <tr>
-            <td>Total Harga:</td>
-            <td class="text-right">{{ format_uang($penjualan->total_harga) }}</td>
-        </tr>
-        <tr>
             <td>Total Item:</td>
             <td class="text-right">{{ format_uang($penjualan->total_item) }}</td>
         </tr>
         <tr>
+            <td>Total Harga:</td>
+            <td class="text-right">{{ format_uang($penjualan->total_harga + $penjualan->diskon) }}</td>
+        </tr>
+        <tr>
             <td>Diskon:</td>
             <td class="text-right">{{ format_uang($penjualan->diskon) }}</td>
+        </tr>
+        <tr>
+            <td>Harga Setelah Diskon:</td>
+            <td class="text-right">{{ format_uang($penjualan->total_harga - $penjualan->diskon) }}</td>
+        </tr>
+    </table>
+
+    <p class="text-center">-----------------------------------</p>
+
+    <table width="100%" style="border: 0;">    
+        <tr>
+            <td>Down Payment (DP):</td>
+            <td class="text-right">{{ format_uang($penjualan->dp) }}</td>
         </tr>
         <tr>
             <td>Total Bayar:</td>
@@ -110,6 +123,7 @@
             <td class="text-right">{{ format_uang($penjualan->diterima - $penjualan->bayar) }}</td>
         </tr>
     </table>
+
 
     <p class="text-center">===================================</p>
     <p class="text-center">-- TERIMA KASIH --</p>
